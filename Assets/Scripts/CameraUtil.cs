@@ -10,6 +10,14 @@ public class CameraUtil : MonoBehaviour {
 	[DllImport ("user32.dll")]
 	[return: MarshalAs (UnmanagedType.Bool)]
 	public static extern bool GetCursorPos (out Point pos);
+	public bool wireframe = false;
+	protected Camera myCam;
+	protected Transform myTransform;
+
+	protected virtual void Start () {
+		myTransform = transform;
+		myCam = GetComponent<Camera> ();
+	}
 
 	protected Vector2 UnityCursorToScreenSpace (Vector2 position) {
 
@@ -23,6 +31,19 @@ public class CameraUtil : MonoBehaviour {
 		var newYPos = (int)(Screen.height - (position.y) + renderRegionOffset.y);
 
 		return new Vector2 (newXPos, newYPos);
+	}
+
+	void OnPreRender () {
+		if (wireframe) {
+			//GL.ClearWithSkybox (true, myCam);
+			GL.wireframe = true;
+		} else {
+			GL.wireframe = false;
+		}
+	}
+
+	private void OnPostRender () {
+		GL.wireframe = false;
 	}
 }
 

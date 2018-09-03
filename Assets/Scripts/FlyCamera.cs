@@ -6,13 +6,12 @@ public class FlyCamera : CameraUtil {
 
 	public float mouseSensitivity = 1.4f;
 	public float flySpeed = 4f;
-	Transform myTransform;
 	Vector2 rotation;
 	Vector2 cursorLockPos;
 	bool isActive = false;
 
-	void Start () {
-		myTransform = transform;
+	protected override void Start () {
+		base.Start ();
 		rotation = myTransform.eulerAngles;
 	}
 	

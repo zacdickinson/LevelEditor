@@ -7,16 +7,9 @@ public class OrthoCamera : CameraUtil {
 	public Vector2 minBounds;
 	public Vector2 maxBounds;
 	public float panSpeed = 4f;
-	Transform myTransform;
 	Vector2 cursorLockPos;
 	bool isActive = false;
-	Camera myCam;
-
-	void Start () {
-		myTransform = transform;
-		myCam = GetComponent<Camera> ();
-	}
-
+	
 	void Update () {
 		if (Input.GetMouseButtonDown (1) &&
 			Input.mousePosition.x / Screen.width > minBounds.x && Input.mousePosition.x / Screen.width < maxBounds.x &&
